@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>name</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/web3.min.js"></script>
+</head>
+
+<body class="container">
+    <h1>輸入名字</h1>
+    <script>
+        var namet;
+        window.addEventListener('load', async() => {
+            if (window.ethereum) {
+                web3js = new Web3(window.ethereum);
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+                startApp();
+                FB.init();
+            } else if (window.web3) {
+                web3js = new Web3(web3.currentProvider);
+                startApp();
+                FB.init();
+            } else {
+                alert("請先安裝MetaMask");
+            }
+        });
+
+        function startApp() {
+            var name1 = '0x5350e2c328b658a1d2723e340a4008d3117cf32f';
+            search = new web3js.eth.Contract(NAME, name1);
+
+        }
+
+        function namei() {
+            // search.methods.namein(myFunction()).send();
+            search.methods.setName("bitsofcode").send();
+        }
+
+        function whatIsMyNamepublic() {
+            userAccount = web3.currentProvider.selectedAddress;
+            var name3 = await search.methods.whatIsMyNamepublic().call(userAccount);
+            return name3
+        }
+
+        function myFunction() {
+            var x = document.getElementById("candidate").value;
+            return x
+        }
+
+        function display_alert() {
+            userAccount = web3.currentProvider.selectedAddress;
+            alert(whatIsMyNamepublic())
+        }
+    </script>
+    <div class="table-responsive">
+
+        <input name="val" type="text" id="candidate" onchange="myFunction()" />
+        <button onclick="myFunction(candidate)">輸入名字</button>
+        <button onclick="collname()">我的名字</button>
+        <input type="button" onclick="display_alert()" value="Display alert box" />
+        <div id="msg"></div>
+
+        <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+        <script src="name2_abi.js"></script>
+</body>
+
+</html>
