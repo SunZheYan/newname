@@ -15,7 +15,7 @@
 <body class="container">
     <h1>輸入名字</h1>
     <script>
-        var namet;
+        var name1;
         window.addEventListener('load', async() => {
             if (window.ethereum) {
                 web3js = new Web3(window.ethereum);
@@ -46,8 +46,8 @@
 
         function whatIsMyNamepublic() {
             userAccount = web3.currentProvider.selectedAddress;
-            var name3 = await search.methods.whatIsMyNamepublic().call(userAccount);
-            return name3
+            return search.methods.whatIsMyNamepublic().call(userAccount);
+
         }
 
         function myFunction() {
